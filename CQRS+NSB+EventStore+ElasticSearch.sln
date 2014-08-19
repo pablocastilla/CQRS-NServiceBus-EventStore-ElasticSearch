@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterConfiguration", "Meter
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{F3A8341D-C176-4B75-8251-8D7E36921666}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{4E60B3D6-8BF0-4913-B4F0-D0923E7A0FCC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{C005A4AD-0954-41F3-9855-4901087731BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C005A4AD-0954-41F3-9855-4901087731BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C005A4AD-0954-41F3-9855-4901087731BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E60B3D6-8BF0-4913-B4F0-D0923E7A0FCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E60B3D6-8BF0-4913-B4F0-D0923E7A0FCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E60B3D6-8BF0-4913-B4F0-D0923E7A0FCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E60B3D6-8BF0-4913-B4F0-D0923E7A0FCC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

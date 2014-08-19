@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")  
+    @Scripts.Render("~/bundles/jquery")   
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angularModules")
+    @Scripts.Render("~/bundles/application")
+  
+
+</head>
+<body data-ng-app="main" ng-controller="mainViewController">
+    <!-- Header \ Sidebar Content-->
+    <tabset>
+        <tab heading="View reads" select="tabSelected(0)"></tab>
+
+        <tab heading="Create reads" select="tabSelected(1)"></tab>
+
+
+    </tabset>
+
+    <span ng-show="isViewLoading">
+        loading the view...
+    </span>
+
+    <div class="container" ng-view ng-show="!isViewLoading">
+        @RenderBody()
+    </div>
+
+   
+
+
+</body>
+</html>
