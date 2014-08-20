@@ -80,8 +80,7 @@ namespace ElasticSearchSychronizer
         private void Handle(MeterCreated evt)
         {
             var deviceInfo = new DeviceInfo() 
-                            { 
-                                Id = evt.Id,
+                            {                                
                                 SerialNumber = evt.SerialNumber
                             };
 
@@ -92,7 +91,7 @@ namespace ElasticSearchSychronizer
 
         private void Handle(LoadProfileReceived evt)
         {
-            var di = indexer.Get<DeviceInfo>(evt.Id);
+            var di = indexer.Get<DeviceInfo>(evt.SerialNumber);
 
 
             di.LastReadTime = evt.LPReads.Max( lp => lp.ReadTimeStamp);
@@ -105,7 +104,7 @@ namespace ElasticSearchSychronizer
 
         private void Handle(MeterStateChanged evt)
         {
-            var di = indexer.Get<DeviceInfo>(evt.Id);
+            var di = indexer.Get<DeviceInfo>(evt.SerialNumber);
 
             di.State = evt.State.ToString();
             di.LastUpdated = DateTime.UtcNow;
@@ -127,9 +126,9 @@ namespace ElasticSearchSychronizer
                 });
                 x.RunAsLocalSystem();                            //6
 
-                x.SetDescription("Sample Topshelf Host");        //7
-                x.SetDisplayName("Stuff");                       //8
-                x.SetServiceName("stuff");                       //9
+                x.SetDescription("Service that synchronizes EventStore with Elastic Search");        //7
+                x.SetDisplayName("ElasticSearchSynchronizer");                       //8
+                x.SetServiceName("ElasticSearchSynchronizer");                       //9
             });                                                  //10
         }
     }

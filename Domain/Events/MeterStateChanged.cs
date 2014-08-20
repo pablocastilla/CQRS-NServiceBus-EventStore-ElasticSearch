@@ -9,8 +9,8 @@ namespace Domain.Events
 {
     public class MeterStateChanged :  IDomainEvent
     {
-        public Guid Id { get; set; }
-
+        public string SerialNumber { get; set; }
+     
         public Domain.Meter.MeterState State { get; set; }
         
     }

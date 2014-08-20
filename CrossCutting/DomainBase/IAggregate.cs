@@ -9,7 +9,8 @@ namespace CrossCutting.DomainBase
     public interface IAggregate
     {
         int Version { get; }
-        Guid Id { get; }
+
+        string Id { get; }
 
         void ApplyEvent(IDomainEvent @event);
 

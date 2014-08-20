@@ -13,27 +13,26 @@ namespace LoadProfileCollector
 {
     public class LoadProfileReceivedEventHandler : IHandleMessages<LoadProfileReceivedEvent>
     {
+        public IBus Bus { get; set; }
+
         public void Handle(LoadProfileReceivedEvent message)
         {
             var connection = Configuration.CreateConnection();
             var domainRepository = new EventStoreDomainRepository(connection);
            
-            var meter = domainRepository.GetById<Meter>(message.MeterId);
+            var meter = domainRepository.GetById<Meter>(message.SerialNumber);
 
             meter.AddLoadProfile(
                 new LoadProfileReceived()
-                            {
-                                Id = meter.Id,
-                                LPReads = new List<LoadProfileRead>() 
-                                { 
-                                    new LoadProfileRead()
-                                    {
-                                        Id=meter.Id,
-                                        EntryDateTime = message.EntryDateTime,
-                                        ReadTimeStamp = message.ReadTimeStamp,
-                                        Value = message.Value
-                                    }
-                                }
+                            {                             
+                                SerialNumber=message.SerialNumber,
+                                LPReads = message.LoadProfile.Select(lp => new  LoadProfileRead()
+                                            {
+                                                ReadTimeStamp = lp.ReadTimeStamp,
+                                                Value = lp.Value,
+                                                EntryDateTime = lp.EntryDateTime
+                                            }
+                                            ).ToList()
                             });
 
             meter.ChangeMeterState(Meter.MeterState.Operative);

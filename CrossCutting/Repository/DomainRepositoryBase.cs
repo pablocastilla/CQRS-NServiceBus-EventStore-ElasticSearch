@@ -7,7 +7,7 @@ namespace CrossCutting.Repository
     public abstract class DomainRepositoryBase : IDomainRepository
     {
         public abstract IEnumerable<IDomainEvent> Save<TAggregate>(TAggregate aggregate) where TAggregate : IAggregate;
-        public abstract TResult GetById<TResult>(Guid id) where TResult : IAggregate, new();
+        public abstract TResult GetById<TResult>(string id) where TResult : IAggregate, new();
 
         protected int CalculateExpectedVersion<T>(IAggregate aggregate, List<T> events)
         {

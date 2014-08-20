@@ -9,8 +9,6 @@ namespace ElasticSearchSychronizer.Documents
 {
     public class DeviceInfo
     {
-        public Guid Id { get; set; }
-
         public string SerialNumber { get; set; }
 
         public string State { get; set; }

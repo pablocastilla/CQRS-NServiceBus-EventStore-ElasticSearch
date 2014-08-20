@@ -8,6 +8,6 @@ namespace CrossCutting.DomainBase
 {
     public interface IDomainEvent
     {
-        Guid Id { get; set; }
+        
     }
 }

@@ -10,7 +10,13 @@ namespace Domain
 {
     public class Meter : AggregateBase
     {
+        public override string Id
+        {
+            get { return this.SerialNumber; }
+        }
+      
         public string SerialNumber;
+
         public List<LoadProfileRead> LoadProfile;
         public MeterState state;
        
@@ -20,15 +26,15 @@ namespace Domain
             RegisterTransition<LoadProfileReceived>(Apply);
         }
 
-        private Meter(Guid id, string SerialNumber) : this()
+        private Meter(string SerialNumber) : this()
         {
-            RaiseEvent(new MeterCreated(id, SerialNumber));
+            RaiseEvent(new MeterCreated(SerialNumber));
            
         }
 
-        public static Meter Create(Guid id, string serialNumber)
+        public static Meter Create(string serialNumber)
         {
-            return new Meter(id, serialNumber);
+            return new Meter(serialNumber);
         }
 
         public void AddLoadProfile(LoadProfileReceived obj)
@@ -37,7 +43,7 @@ namespace Domain
             var lpReceivedEvent = new LoadProfileReceived();
             lpReceivedEvent.LPReads = new List<LoadProfileRead>();
 
-            lpReceivedEvent.Id = this.Id;
+            
             lpReceivedEvent.LPReads.AddRange(obj.LPReads);
 
 
@@ -47,8 +53,7 @@ namespace Domain
         public void ChangeMeterState(MeterState state)
         {
             var meterStateChanged = new MeterStateChanged() 
-            {
-                Id=this.Id,
+            {                
                 State = state
             };
 
@@ -56,8 +61,7 @@ namespace Domain
         }
 
         private void Apply(MeterCreated obj)
-        {
-            Id = obj.Id;
+        {           
             SerialNumber = obj.SerialNumber;
             state = MeterState.Imported;
             LoadProfile = new List<LoadProfileRead>();
@@ -81,5 +85,7 @@ namespace Domain
             Operative
             
         }
+
+       
     }
 }

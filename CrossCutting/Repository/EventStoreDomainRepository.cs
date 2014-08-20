@@ -18,7 +18,7 @@ namespace CrossCutting.Repository
             _connection = connection;
         }
 
-        private string AggregateToStreamName(Type type, Guid id)
+        private string AggregateToStreamName(Type type, string id)
         {
             return string.Format("{0}-{1}-{2}", Category, type.Name, id);
         }
@@ -37,7 +37,7 @@ namespace CrossCutting.Repository
             return events;
         }
 
-        public override TResult GetById<TResult>(Guid id)
+        public override TResult GetById<TResult>(string id) 
         {
             var streamName = AggregateToStreamName(typeof(TResult), id);
             var eventsSlice = _connection.ReadStreamEventsForward(streamName, 0, int.MaxValue, false);

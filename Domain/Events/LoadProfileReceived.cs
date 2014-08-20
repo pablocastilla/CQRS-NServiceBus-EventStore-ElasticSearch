@@ -9,7 +9,7 @@ namespace Domain.Events
 {
     public class LoadProfileReceived : IDomainEvent
     {
-        public Guid Id { get; set; }
+        public string SerialNumber { get; set; }
 
          public  List<LoadProfileRead> LPReads { get; set; }
     }

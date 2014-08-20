@@ -9,15 +9,16 @@ namespace Domain.Events
 {
     public class MeterCreated :  IDomainEvent
     {
-        public Guid Id { get; set; }
-
+       
         public string SerialNumber { get; set; }
 
 
-        public MeterCreated(Guid id, string serialNumber)
+        public MeterCreated(string serialNumber)
         {
-            this.Id = id;
+            
             this.SerialNumber = serialNumber;
         }
+
+       
     }
 }

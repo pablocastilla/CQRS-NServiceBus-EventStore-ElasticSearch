@@ -29,24 +29,21 @@ namespace MeterImportation
 
         public void Start()
         {
-            /*var meterId = System.Guid.NewGuid();
-
-
+         
 
             Parallel.For(0, 999999, i =>
             {
-                var guidString = "26de36b7-76f5-4f17-8f9d-44eb50"+String.Format("{0:000000}", i);
+               
 
                 Bus.Send("MeterImportation",
                     new ImportMeterCommand()
                     {
-                        MessageId = System.Guid.NewGuid(),
-                        MeterId = new System.Guid(guidString),
+                        MessageId = System.Guid.NewGuid(),                        
                         SerialNumber = "Meter" + i
                     }
                 );
             }
-            );*/
+            );
 
         }
 

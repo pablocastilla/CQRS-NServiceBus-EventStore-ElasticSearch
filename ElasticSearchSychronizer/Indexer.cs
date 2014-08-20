@@ -7,7 +7,7 @@ namespace ElasticSearchSychronizer
     internal class Indexer
     {
         private readonly ElasticClient _esClient;
-        private string _index = "MeterManager";
+        private string _index = "metermanager";
 
         public Indexer()
         {
@@ -16,7 +16,7 @@ namespace ElasticSearchSychronizer
             _esClient = new ElasticClient(settings);
         }
 
-        public TDocument Get<TDocument>(Guid id) where TDocument : class
+        public TDocument Get<TDocument>(string id) where TDocument : class
         {
             return _esClient.Get<TDocument>(id.ToString()).Source;
         }

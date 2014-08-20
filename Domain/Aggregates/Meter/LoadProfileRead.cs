@@ -8,9 +8,7 @@ namespace Domain
 {
     public class LoadProfileRead
     {
-        public Guid Id { get; set; }
-
-        public string SerialNumber { get; set; }
+           
 
         public DateTime ReadTimeStamp { get; set; }
 

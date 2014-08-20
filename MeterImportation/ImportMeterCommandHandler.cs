@@ -21,24 +21,14 @@ namespace LoadProfileCollector
             var connection = Configuration.CreateConnection();
             var domainRepository = new EventStoreDomainRepository(connection);
 
-            Meter meter = Meter.Create(message.MeterId, message.SerialNumber);
+            Meter meter = Meter.Create(message.SerialNumber);
 
             meter.ChangeMeterState(Meter.MeterState.Imported);
 
             domainRepository.Save<Meter>(meter);
 
-          /*  Random rnd = new Random();
-            int value = rnd.Next(1, 1000);
+            Bus.Send(new ConfigureMeterCommand {SerialNumber=meter.SerialNumber });
 
-            Bus.Publish(new LoadProfileReceivedEvent()
-            {
-                MessageId = System.Guid.NewGuid(),
-                MeterId = meter.Id,
-                EntryDateTime = DateTime.Today,
-                ReadTimeStamp = DateTime.Today,
-                SerialNumber = message.SerialNumber,
-                Value = value
-            });*/
         }
     }
 }

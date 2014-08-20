@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace CrossCutting.DomainBase
 {
-    public class AggregateBase : IAggregate
+    public abstract class AggregateBase : IAggregate
     {
+        public abstract string Id { get; }
+
+
         public int Version
         {
             get
@@ -20,7 +23,7 @@ namespace CrossCutting.DomainBase
             }
         }
 
-        public Guid Id { get; protected set; }
+       
         private List<IDomainEvent> _uncommitedEvents = new List<IDomainEvent>();
         private Dictionary<Type, Action<IDomainEvent>> _routes = new Dictionary<Type, Action<IDomainEvent>>();
         private int version = -1;
@@ -55,6 +58,7 @@ namespace CrossCutting.DomainBase
         public void ClearUncommitedEvents()
         {
             _uncommitedEvents.Clear();
-        }
+        }    
+     
     }
 }
