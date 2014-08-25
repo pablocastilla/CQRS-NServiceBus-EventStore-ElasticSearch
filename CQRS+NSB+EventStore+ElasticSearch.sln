@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoadProfileCollector", "LoadProfileCollector\LoadProfileCollector.csproj", "{2A8B265F-C0E6-4325-AF60-79A43E0EB7E8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messages", "Messages\Messages.csproj", "{33538901-4A77-46B5-8203-5ACEB3E5EA31}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{6A90EA39-A0B6-40EF-A2FF-D332BF619080}"
@@ -13,11 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossCutting", "CrossCuttin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticSearchSychronizer", "ElasticSearchSychronizer\ElasticSearchSychronizer.csproj", "{00A7B59C-4121-471D-ABA9-42E7FD2FB84D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterConfiguration", "MeterConfiguration\MeterConfiguration.csproj", "{C005A4AD-0954-41F3-9855-4901087731BC}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{F3A8341D-C176-4B75-8251-8D7E36921666}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{4E60B3D6-8BF0-4913-B4F0-D0923E7A0FCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateClient", "Services\CreateClient\CreateClient.csproj", "{BFFD2095-B149-4621-9001-A6CEF564B3D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2A8B265F-C0E6-4325-AF60-79A43E0EB7E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2A8B265F-C0E6-4325-AF60-79A43E0EB7E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2A8B265F-C0E6-4325-AF60-79A43E0EB7E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2A8B265F-C0E6-4325-AF60-79A43E0EB7E8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{33538901-4A77-46B5-8203-5ACEB3E5EA31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{33538901-4A77-46B5-8203-5ACEB3E5EA31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33538901-4A77-46B5-8203-5ACEB3E5EA31}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,20 +39,19 @@ Global
 		{00A7B59C-4121-471D-ABA9-42E7FD2FB84D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00A7B59C-4121-471D-ABA9-42E7FD2FB84D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00A7B59C-4121-471D-ABA9-42E7FD2FB84D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C005A4AD-0954-41F3-9855-4901087731BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C005A4AD-0954-41F3-9855-4901087731BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C005A4AD-0954-41F3-9855-4901087731BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C005A4AD-0954-41F3-9855-4901087731BC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4E60B3D6-8BF0-4913-B4F0-D0923E7A0FCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4E60B3D6-8BF0-4913-B4F0-D0923E7A0FCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E60B3D6-8BF0-4913-B4F0-D0923E7A0FCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E60B3D6-8BF0-4913-B4F0-D0923E7A0FCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFFD2095-B149-4621-9001-A6CEF564B3D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFFD2095-B149-4621-9001-A6CEF564B3D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFFD2095-B149-4621-9001-A6CEF564B3D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFFD2095-B149-4621-9001-A6CEF564B3D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{2A8B265F-C0E6-4325-AF60-79A43E0EB7E8} = {F3A8341D-C176-4B75-8251-8D7E36921666}
-		{C005A4AD-0954-41F3-9855-4901087731BC} = {F3A8341D-C176-4B75-8251-8D7E36921666}
+		{BFFD2095-B149-4621-9001-A6CEF564B3D1} = {F3A8341D-C176-4B75-8251-8D7E36921666}
 	EndGlobalSection
 EndGlobal
