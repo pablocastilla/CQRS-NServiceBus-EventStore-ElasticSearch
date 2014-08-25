@@ -19,6 +19,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateClient", "Services\Cr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EventStore", "EventStore", "{C01BB700-0A94-4E67-B408-0FC5A7B49A69}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projections", "Projections", "{E68F5688-A5D8-4449-AA9E-1429973FD043}"
+	ProjectSection(SolutionItems) = preProject
+		TotalMoneyInTheBank.js = TotalMoneyInTheBank.js
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,5 +60,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BFFD2095-B149-4621-9001-A6CEF564B3D1} = {F3A8341D-C176-4B75-8251-8D7E36921666}
+		{E68F5688-A5D8-4449-AA9E-1429973FD043} = {C01BB700-0A94-4E67-B408-0FC5A7B49A69}
 	EndGlobalSection
 EndGlobal
