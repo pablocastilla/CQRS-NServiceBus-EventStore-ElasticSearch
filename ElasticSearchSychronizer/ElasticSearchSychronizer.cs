@@ -70,28 +70,27 @@ namespace ElasticSearchSychronizer
         {
             return new Dictionary<Type, Action<object>>()
             {
-                {typeof (MeterCreated), o => Handle(o as MeterCreated)},
-                {typeof (LoadProfileReceived), o => Handle(o as LoadProfileReceived)},
-                {typeof (MeterStateChanged), o => Handle(o as MeterStateChanged)}                
+                {typeof (ClientCreated), o => Handle(o as ClientCreated)},
+                {typeof (AmountDeposited), o => Handle(o as AmountDeposited)}              
              
             };
         }
 
-        private void Handle(MeterCreated evt)
+        private void Handle(ClientCreated evt)
         {
-            var deviceInfo = new DeviceInfo() 
+            var clientInfo = new ClientInformation() 
                             {                                
-                                SerialNumber = evt.SerialNumber
+                               
                             };
 
-            deviceInfo.LastUpdated = DateTime.UtcNow;
+            /*deviceInfo.LastUpdated = DateTime.UtcNow;
 
-            indexer.Index(deviceInfo);
+            indexer.Index(deviceInfo);*/
         }
 
-        private void Handle(LoadProfileReceived evt)
+        private void Handle(AmountDeposited evt)
         {
-            var di = indexer.Get<DeviceInfo>(evt.SerialNumber);
+            /*var di = indexer.Get<ClientInformation>(evt.SerialNumber);
 
 
             di.LastReadTime = evt.LPReads.Max( lp => lp.ReadTimeStamp);
@@ -99,17 +98,10 @@ namespace ElasticSearchSychronizer
 
             di.LastUpdated = DateTime.UtcNow;
 
-            indexer.Index(di);
+            indexer.Index(di);*/
         }
 
-        private void Handle(MeterStateChanged evt)
-        {
-            var di = indexer.Get<DeviceInfo>(evt.SerialNumber);
-
-            di.State = evt.State.ToString();
-            di.LastUpdated = DateTime.UtcNow;
-            indexer.Index(di);
-        }
+      
     }
 
     public class Program

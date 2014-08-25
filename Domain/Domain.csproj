@@ -39,11 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aggregates\Meter\LoadProfileRead.cs" />
-    <Compile Include="Aggregates\Meter\Meter.cs" />
-    <Compile Include="Events\LoadProfileReceived.cs" />
-    <Compile Include="Events\MeterCreated.cs" />
-    <Compile Include="Events\MeterStateChanged.cs" />
+    <Compile Include="Aggregates\Client.cs" />
+    <Compile Include="Events\AmountDeposited.cs" />
+    <Compile Include="Events\ClientCreated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +50,7 @@
       <Name>CrossCutting</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

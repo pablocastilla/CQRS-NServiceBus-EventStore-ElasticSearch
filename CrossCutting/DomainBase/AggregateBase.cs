@@ -8,7 +8,7 @@ namespace CrossCutting.DomainBase
 {
     public abstract class AggregateBase : IAggregate
     {
-        public abstract string Id { get; }
+        public abstract string AggregateId { get; }
 
 
         public int Version

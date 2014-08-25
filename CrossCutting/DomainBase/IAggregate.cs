@@ -10,7 +10,7 @@ namespace CrossCutting.DomainBase
     {
         int Version { get; }
 
-        string Id { get; }
+        string AggregateId { get; }
 
         void ApplyEvent(IDomainEvent @event);
 

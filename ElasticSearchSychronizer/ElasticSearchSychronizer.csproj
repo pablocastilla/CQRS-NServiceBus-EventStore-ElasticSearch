@@ -58,7 +58,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Documents\DeviceInfo.cs" />
+    <Compile Include="Documents\ClientInformation.cs" />
     <Compile Include="ElasticSearchSychronizer.cs" />
     <Compile Include="Indexer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

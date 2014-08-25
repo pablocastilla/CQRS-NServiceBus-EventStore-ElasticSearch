@@ -1,5 +1,5 @@
 using System;
-using Domain.Events;
+
 using Nest;
 
 namespace ElasticSearchSychronizer
@@ -28,8 +28,8 @@ namespace ElasticSearchSychronizer
 
         public void Init()
         {
-            _esClient.CreateIndex(_index, y => y             
-                .AddMapping<MeterCreated>(m => m.MapFromAttributes()));
+           /* _esClient.CreateIndex(_index, y => y             
+                .AddMapping<MeterCreated>(m => m.MapFromAttributes()));*/
         }
     }
 }

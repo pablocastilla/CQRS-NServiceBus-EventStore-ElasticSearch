@@ -11,7 +11,7 @@ namespace CrossCutting.Repository
     public class EventStoreDomainRepository : DomainRepositoryBase
     {
         private IEventStoreConnection _connection;
-        private const string Category = "MeterManager";
+        private const string Category = "Bank";
 
         public EventStoreDomainRepository(IEventStoreConnection connection)
         {
@@ -32,7 +32,7 @@ namespace CrossCutting.Repository
             var expectedVersion = originalVersion == -1 ? ExpectedVersion.NoStream : originalVersion;
 
             var eventData = events.Select(CreateEventData);
-            var streamName = AggregateToStreamName(aggregate.GetType(), aggregate.Id);
+            var streamName = AggregateToStreamName(aggregate.GetType(), aggregate.AggregateId);
             _connection.AppendToStream(streamName, expectedVersion, eventData);
             return events;
         }
