@@ -1,8 +1,6 @@
-//    fromAll() 
-// fromStream('streamId') | fromStreams(['sream1', 'stream2']) | fromCategory('category')
-//NOTE: fromCategory requires $by_category standard projection to be enabled
+//ProjectionName: TotalMoneyInTheBank
+//   /projection/TotalMoneyInTheBank/state
 
-// .foreachStream() | .partitionBy(function(e) { return e.body.useId; })
 fromAll()
 .when({
     $init: function () {
