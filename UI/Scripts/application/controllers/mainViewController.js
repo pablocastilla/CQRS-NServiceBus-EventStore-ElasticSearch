@@ -7,9 +7,9 @@ uiAngularControllers.controller('mainViewController', ['$scope', '$rootScope', '
     $scope.tabSelected = function (tabId) {
 
         if (tabId == 0)
-            $location.path("/Home/ViewReads");
+            $location.path("/Home/DashBoard");
         else if (tabId == 1)
-            $location.path("/Home/CreateRead");
+            $location.path("/Home/MakeDeposit");
     };
 
 
