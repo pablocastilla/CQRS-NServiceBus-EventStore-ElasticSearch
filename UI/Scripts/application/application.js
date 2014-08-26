@@ -7,18 +7,14 @@ var uiAngularControllers = angular.module("uiAngularControllers", []);
 //URL MAPPINGS
 app.config(function ($routeProvider) {
     $routeProvider.
-      when('/Home/ViewReads', {
-          templateUrl: '/Home/ViewReads',
-          controller: 'ViewReadsController'
+      when('/Home/DashBoard', {
+          templateUrl: '/Home/DashBoard',
+          controller: 'dashBoardController'
       }).
-      when('/Home/CreateRead', {
-          templateUrl: '/Home/CreateRead',
-          controller: 'CreateReadController'
-      }).
-      when('/Home/about', {
-          templateUrl: '/Home/About',
-          controller: 'AboutController'
-      }).
+      when('/Home/MakeDeposit', {
+          templateUrl: '/Home/MakeDeposit',
+          controller: 'makeDepositController'
+      }).   
       otherwise({
           redirectTo: '/404'
       });
