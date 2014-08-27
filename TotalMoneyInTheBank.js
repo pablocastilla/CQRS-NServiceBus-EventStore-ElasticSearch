@@ -13,4 +13,4 @@ fromAll()
         return s;
     },
 
-})
+});

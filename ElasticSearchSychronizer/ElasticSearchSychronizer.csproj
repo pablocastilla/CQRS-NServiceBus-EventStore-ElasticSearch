@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Documents\ClientInformation.cs" />
+    <Compile Include="Documents\AmountDepositedInTheBank.cs" />
     <Compile Include="ElasticSearchSychronizer.cs" />
     <Compile Include="Indexer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

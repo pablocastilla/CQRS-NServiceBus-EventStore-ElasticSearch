@@ -98,6 +98,8 @@ namespace ElasticSearchSychronizer
             di.LastMovement = evt.TimeStamp;
           
             indexer.Index(di);
+
+            indexer.Index(new AmountDepositedInTheBank { Quantity = evt.Quantity, TimeStamp = evt.TimeStamp });
         }
 
       
