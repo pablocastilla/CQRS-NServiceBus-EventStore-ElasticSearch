@@ -56,7 +56,7 @@ namespace Domain.Aggregates
 
         public void Deposit(double quantity, DateTime timeStamp)
         {
-            RaiseEvent(new AmountDeposited(quantity, timeStamp));
+            RaiseEvent(new AmountDeposited(quantity, timeStamp,ID));
         }
     }
 }

@@ -9,15 +9,19 @@ namespace Domain.Events
 {
     public class AmountDeposited : IDomainEvent
     {
+        public string ID { get; set; }
+
         public double Quantity { get; set; }
 
         public DateTime TimeStamp { get; set; }
 
-        public AmountDeposited(double quantity, DateTime timeStamp)
+        public AmountDeposited(double quantity, DateTime timeStamp, string id)
         {
             Quantity = quantity;
 
             TimeStamp = timeStamp;
+
+            ID = id;
         }
     }
 }

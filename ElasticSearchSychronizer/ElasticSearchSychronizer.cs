@@ -80,25 +80,24 @@ namespace ElasticSearchSychronizer
         {
             var clientInfo = new ClientInformation() 
                             {                                
-                               
+                               ID=evt.ID,
+                               Name=evt.Name,
+                               Balance=0
                             };
 
-            /*deviceInfo.LastUpdated = DateTime.UtcNow;
 
-            indexer.Index(deviceInfo);*/
+
+            indexer.Index(clientInfo);
         }
 
         private void Handle(AmountDeposited evt)
         {
-            /*var di = indexer.Get<ClientInformation>(evt.SerialNumber);
+            var di = indexer.Get<ClientInformation>(evt.ID);
 
-
-            di.LastReadTime = evt.LPReads.Max( lp => lp.ReadTimeStamp);
-            di.LastReadValue = evt.LPReads.Max(lp => lp.Value);
-
-            di.LastUpdated = DateTime.UtcNow;
-
-            indexer.Index(di);*/
+            di.Balance += evt.Quantity;
+            di.LastMovement = evt.TimeStamp;
+          
+            indexer.Index(di);
         }
 
       
