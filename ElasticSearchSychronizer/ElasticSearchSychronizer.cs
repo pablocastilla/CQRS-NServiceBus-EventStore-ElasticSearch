@@ -7,7 +7,7 @@ using System.Timers;
 using CrossCutting;
 using CrossCutting.Repository;
 using Domain.Events;
-using ElasticSearchSychronizer.Documents;
+using ElasticSearchReadModel.Documents;
 using EventStore.ClientAPI;
 using Topshelf;
 
@@ -92,14 +92,17 @@ namespace ElasticSearchSychronizer
 
         private void Handle(AmountDeposited evt)
         {
-            var di = indexer.Get<ClientInformation>(evt.ID);
+            var ci = indexer.Get<ClientInformation>(evt.ID);
 
-            di.Balance += evt.Quantity;
-            di.LastMovement = evt.TimeStamp;
-          
-            indexer.Index(di);
+            ci.Balance += evt.Quantity;
+            ci.LastMovement = evt.TimeStamp;
 
-            indexer.Index(new AmountDepositedInTheBank { Quantity = evt.Quantity, TimeStamp = evt.TimeStamp });
+            indexer.Index(ci);
+
+            var ad = indexer.Get<AmountDepositedInTheBank>(evt.TransactionId.ToString());
+
+            if(ad==null)
+                indexer.Index(new AmountDepositedInTheBank { Quantity = evt.Quantity, TimeStamp = evt.TimeStamp, ID=evt.ID,TransactionId=evt.TransactionId });
         }
 
       

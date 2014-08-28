@@ -17,32 +17,13 @@ namespace CreateClient
             var connection = Configuration.CreateConnection();
             var domainRepository = new EventStoreDomainRepository(connection);
 
+                     
+            var client = Client.CreateClient(message.ID, message.Name);
+            client.Deposit(message.InitialDeposit, DateTime.UtcNow,message.TransactionId);
 
-            try 
-	        {	        
-		        var client = domainRepository.GetById<Client>(message.ID);
+            domainRepository.Save<Client>(client, true);
 
-
-	        }
-	        catch (AggregateNotFoundException)
-	        {
-
-                try
-                {
-                    var client = Client.CreateClient(message.ID, message.Name);
-                    client.Deposit(message.InitialDeposit, DateTime.UtcNow);
-
-                    domainRepository.Save<Client>(client);
-
-                }
-                catch (Exception)
-                {
-                    
-                 
-                }
-        		
-	        }
-           
+                      
         }
     }
 }

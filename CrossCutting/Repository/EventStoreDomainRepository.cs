@@ -23,13 +23,17 @@ namespace CrossCutting.Repository
             return string.Format("{0}-{1}-{2}", Category, type.Name, id);
         }
 
-        public override IEnumerable<IDomainEvent> Save<TAggregate>(TAggregate aggregate)
+        public override IEnumerable<IDomainEvent> Save<TAggregate>(TAggregate aggregate, bool isInitial=false)
         {
             var events = aggregate.UncommitedEvents().ToList();
             //var expectedVersion = CalculateExpectedVersion(aggregate, events);
 
             var originalVersion = aggregate.Version - events.Count;
+
             var expectedVersion = originalVersion == -1 ? ExpectedVersion.NoStream : originalVersion;
+            
+            if(isInitial)              
+                expectedVersion = ExpectedVersion.NoStream;
 
             var eventData = events.Select(CreateEventData);
             var streamName = AggregateToStreamName(aggregate.GetType(), aggregate.AggregateId);

@@ -17,7 +17,7 @@ namespace UI
                 "~/Scripts/angular.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angularModules").Include(
-             "~/Scripts/angular-*"));
+             "~/Scripts/angular-*").Include("~/Scripts/ng-grid.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));

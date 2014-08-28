@@ -54,9 +54,9 @@ namespace Domain.Aggregates
             return new Client(id, name);
         }
 
-        public void Deposit(double quantity, DateTime timeStamp)
+        public void Deposit(double quantity, DateTime timeStamp, Guid transactionId)
         {
-            RaiseEvent(new AmountDeposited(quantity, timeStamp,ID));
+            RaiseEvent(new AmountDeposited(quantity, timeStamp, ID, transactionId));
         }
     }
 }

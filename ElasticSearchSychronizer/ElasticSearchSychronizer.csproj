@@ -58,8 +58,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Documents\ClientInformation.cs" />
-    <Compile Include="Documents\AmountDepositedInTheBank.cs" />
     <Compile Include="ElasticSearchSychronizer.cs" />
     <Compile Include="Indexer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,6 +73,10 @@
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{6a90ea39-a0b6-40ef-a2ff-d332bf619080}</Project>
       <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ElasticSearchReadModel\ElasticSearchReadModel.csproj">
+      <Project>{b99647ae-7e9a-4847-a6d1-ac1a69e55e05}</Project>
+      <Name>ElasticSearchReadModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\Messages\Messages.csproj">
       <Project>{33538901-4a77-46b5-8203-5aceb3e5ea31}</Project>

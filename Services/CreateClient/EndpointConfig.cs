@@ -30,11 +30,8 @@ namespace CreateClient
         public void Start()
         {
 
-
-           /* Parallel.For(0, 10000, i =>
+          /*  Parallel.For(0, 10000, i =>
             {
-
-
                 Bus.Send("CreateClient",
                     new CreateClientCommand()
                     {

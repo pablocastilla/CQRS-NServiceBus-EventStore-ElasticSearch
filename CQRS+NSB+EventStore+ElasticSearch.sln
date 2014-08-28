@@ -24,6 +24,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projections", "Projections"
 		TotalMoneyInTheBank.js = TotalMoneyInTheBank.js
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticSearchReadModel", "ElasticSearchReadModel\ElasticSearchReadModel.csproj", "{B99647AE-7E9A-4847-A6D1-AC1A69E55E05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,10 @@ Global
 		{BFFD2095-B149-4621-9001-A6CEF564B3D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFFD2095-B149-4621-9001-A6CEF564B3D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFFD2095-B149-4621-9001-A6CEF564B3D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B99647AE-7E9A-4847-A6D1-AC1A69E55E05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B99647AE-7E9A-4847-A6D1-AC1A69E55E05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B99647AE-7E9A-4847-A6D1-AC1A69E55E05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B99647AE-7E9A-4847-A6D1-AC1A69E55E05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

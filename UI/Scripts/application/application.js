@@ -1,4 +1,4 @@
-﻿var app = angular.module("main", ['ngRoute', 'uiAngularControllers', 'ui.bootstrap']);
+﻿var app = angular.module("main", ['ngRoute', 'ngAnimate', 'ui.bootstrap','ngGrid', 'uiAngularControllers']);
 app.value('$', $);
 
 var uiAngularControllers = angular.module("uiAngularControllers", []);
@@ -11,9 +11,9 @@ app.config(function ($routeProvider) {
           templateUrl: '/Home/DashBoard',
           controller: 'dashBoardController'
       }).
-      when('/Home/MakeDeposit', {
-          templateUrl: '/Home/MakeDeposit',
-          controller: 'makeDepositController'
+      when('/Home/ClientBrowser', {
+          templateUrl: '/Home/ClientBrowser',
+          controller: 'clientBrowserController'
       }).   
       otherwise({
           redirectTo: '/404'
