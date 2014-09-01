@@ -22,11 +22,13 @@ namespace ElasticSearchReadModel.Repositories
 
             esClient = new ElasticClient(settings);
 
-            var result = esClient.Search<ClientInformation>(c => 
-                    
-                        c.Query(q=>
-                            q.Term(p=>p.Name, name))                  
-                    );
+            //text is always in lowercase in ES
+            if (!string.IsNullOrEmpty(name))
+                name = name.ToLowerInvariant();
+
+            var result = esClient.Search<ClientInformation>(
+               sd => sd.Query( q=> q.Strict(false).Wildcard(t => t.Name,name))
+                   );
 
             return result.Documents.ToList();
         }

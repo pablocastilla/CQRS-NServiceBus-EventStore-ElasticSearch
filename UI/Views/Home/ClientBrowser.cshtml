@@ -3,7 +3,19 @@
 }
 
 
-<div class="gridStyle" ng-grid="gridOptions">
+<div>
+    <div>
+        <div>
+            <input type="text" name="input" ng-model="name" />
+            <button ng-click="readFilteredClients()">
+                Search in Name Field
+            </button>
+        </div>
+      
+    </div>
+    <div class="gridStyle" ng-grid="gridOptions">
+    </div>
 </div>
+
 
 

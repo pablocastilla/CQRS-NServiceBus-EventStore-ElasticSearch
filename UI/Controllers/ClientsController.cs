@@ -14,16 +14,17 @@ namespace UI.Controllers
         // GET: api/Client
         public IEnumerable<ClientInformation> Get()
         {
-
             var rep = new ClientInformationRepository();
 
             return rep.GetClientsBy(null);
         }
 
-        // GET: api/Client/5
-        public string Get(int id)
+        // GET: api/Client/pepe
+        public IEnumerable<ClientInformation> Get(string clientName)
         {
-            return "value";
+            var rep = new ClientInformationRepository();
+
+            return rep.GetClientsBy(clientName);
         }
 
         // POST: api/Client
