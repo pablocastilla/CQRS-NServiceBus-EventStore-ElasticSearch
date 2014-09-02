@@ -18,7 +18,7 @@ namespace CreateClient
             var domainRepository = new EventStoreDomainRepository(connection);
 
                      
-            var client = Client.CreateClient(message.ID, message.Name);
+            var client = Client.CreateClient(message.ClientID, message.Name);
             client.Deposit(message.InitialDeposit, DateTime.UtcNow,message.TransactionId);
 
             domainRepository.Save<Client>(client, true);

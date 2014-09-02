@@ -7,10 +7,18 @@ fromAll()
         return { TotalMoney: 0 }; // initial state
     },
 
-    AmountDeposited: function (s, e) {
+    MoneyDeposited: function (s, e) {
 
         s.TotalMoney += e.data.Quantity;
         return s;
     },
+
+    MoneyWithdrawn: function (s, e) {
+
+        s.TotalMoney -= e.data.Quantity;
+        return s;
+    },
+
+
 
 });

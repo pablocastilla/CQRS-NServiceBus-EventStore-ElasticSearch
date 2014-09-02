@@ -7,25 +7,29 @@ using CrossCutting.DomainBase;
 
 namespace Domain.Events
 {
-    public class AmountDeposited : IDomainEvent
+    public class MoneyDeposited : IDomainEvent
     {
         public Guid TransactionId { get; set; }
 
-        public string ID { get; set; }
+        public string ClientID { get; set; }
 
         public double Quantity { get; set; }
 
         public DateTime TimeStamp { get; set; }
+        public bool FromATM { get; set; }
 
-        public AmountDeposited(double quantity, DateTime timeStamp, string id, Guid transactionId)
+
+        public MoneyDeposited(double quantity, DateTime timeStamp, string id, Guid transactionId, bool fromATM)
         {
             Quantity = quantity;
 
             TimeStamp = timeStamp;
 
-            ID = id;
+            ClientID = id;
 
             TransactionId = transactionId;
+
+            FromATM = fromATM;
         }
     }
 }

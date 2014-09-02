@@ -25,13 +25,8 @@ namespace Domain.Aggregates
         public Client()
         {
             RegisterTransition<ClientCreated>(Apply);
-            RegisterTransition<AmountDeposited>(Apply);
-        }
-
-        private void Apply(AmountDeposited obj)
-        {
-            balance += obj.Quantity;
-            
+            RegisterTransition<MoneyDeposited>(Apply);
+            RegisterTransition<MoneyWithdrawn>(Apply);
         }
 
         private void Apply(ClientCreated obj)
@@ -41,6 +36,17 @@ namespace Domain.Aggregates
             Name = obj.Name;
 
             balance = 0;
+        }
+
+        private void Apply(MoneyDeposited obj)
+        {
+            balance += obj.Quantity;
+            
+        }             
+
+        private void Apply(MoneyWithdrawn obj)
+        {
+            balance -= obj.Quantity;
         }
 
 
@@ -54,9 +60,14 @@ namespace Domain.Aggregates
             return new Client(id, name);
         }
 
-        public void Deposit(double quantity, DateTime timeStamp, Guid transactionId)
+        public void Deposit(double quantity, DateTime timeStamp, Guid transactionId, bool fromATM = false)
         {
-            RaiseEvent(new AmountDeposited(quantity, timeStamp, ID, transactionId));
+            RaiseEvent(new MoneyDeposited(quantity, timeStamp, ID, transactionId, fromATM));
+        }
+
+        public void Withdraw(double quantity, DateTime timeStamp, Guid transactionId, bool fromATM = false)
+        {
+            RaiseEvent(new MoneyWithdrawn(quantity, timeStamp, ID, transactionId, fromATM));
         }
     }
 }

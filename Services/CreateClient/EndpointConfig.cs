@@ -30,20 +30,40 @@ namespace CreateClient
         public void Start()
         {
 
-          /*  Parallel.For(0, 10000, i =>
+            Parallel.For(0, 10, i =>
             {
                 Bus.Send("CreateClient",
                     new CreateClientCommand()
                     {
                         MessageId = System.Guid.NewGuid(),
                         TransactionId = System.Guid.NewGuid(),
-                        ID=i.ToString(),
+                        ClientID=i.ToString(),
                         Name = "Client_" + i,
                         InitialDeposit= 1000
                     }
                 );
+
+                Bus.Send("DepositMoney",
+                    new DepositMoneyCommand()
+                    {
+                        MessageId = System.Guid.NewGuid(),
+                        TransactionId = System.Guid.NewGuid(),
+                        ClientID = i.ToString(),                       
+                        Quantity = 10
+                    }
+                );
+
+                Bus.Send("WithdrawMoney",
+                   new WithdrawMoneyCommand()
+                   {
+                       MessageId = System.Guid.NewGuid(),
+                       TransactionId = System.Guid.NewGuid(),
+                       ClientID = i.ToString(),                     
+                       Quantity = 10
+                   }
+               );
             }
-            );*/
+            );
 
         }
 

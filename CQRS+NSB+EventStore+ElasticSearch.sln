@@ -21,10 +21,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EventStore", "EventStore", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projections", "Projections", "{E68F5688-A5D8-4449-AA9E-1429973FD043}"
 	ProjectSection(SolutionItems) = preProject
+		PossiblyStolenCards.js = PossiblyStolenCards.js
 		TotalMoneyInTheBank.js = TotalMoneyInTheBank.js
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticSearchReadModel", "ElasticSearchReadModel\ElasticSearchReadModel.csproj", "{B99647AE-7E9A-4847-A6D1-AC1A69E55E05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepositMoney", "Services\DepositMoney\DepositMoney.csproj", "{15ECC2EF-A194-4AD1-9DBF-3F5B8A681851}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithdrawMoney", "Services\WithdrawMoney\WithdrawMoney.csproj", "{45F6441F-C0FC-4EC9-BD19-0C2B94A78C2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,6 +65,14 @@ Global
 		{B99647AE-7E9A-4847-A6D1-AC1A69E55E05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B99647AE-7E9A-4847-A6D1-AC1A69E55E05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B99647AE-7E9A-4847-A6D1-AC1A69E55E05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15ECC2EF-A194-4AD1-9DBF-3F5B8A681851}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15ECC2EF-A194-4AD1-9DBF-3F5B8A681851}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15ECC2EF-A194-4AD1-9DBF-3F5B8A681851}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15ECC2EF-A194-4AD1-9DBF-3F5B8A681851}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45F6441F-C0FC-4EC9-BD19-0C2B94A78C2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45F6441F-C0FC-4EC9-BD19-0C2B94A78C2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45F6441F-C0FC-4EC9-BD19-0C2B94A78C2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45F6441F-C0FC-4EC9-BD19-0C2B94A78C2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,5 +80,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{BFFD2095-B149-4621-9001-A6CEF564B3D1} = {F3A8341D-C176-4B75-8251-8D7E36921666}
 		{E68F5688-A5D8-4449-AA9E-1429973FD043} = {C01BB700-0A94-4E67-B408-0FC5A7B49A69}
+		{15ECC2EF-A194-4AD1-9DBF-3F5B8A681851} = {F3A8341D-C176-4B75-8251-8D7E36921666}
+		{45F6441F-C0FC-4EC9-BD19-0C2B94A78C2F} = {F3A8341D-C176-4B75-8251-8D7E36921666}
 	EndGlobalSection
 EndGlobal

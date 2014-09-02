@@ -7,14 +7,12 @@ using NServiceBus;
 
 namespace Messages.Commands
 {
-    public class CreateClientCommand : BusMessage, ICommand
+    public class WithdrawMoneyCommand : BusMessage, ICommand
     {
         public string ClientID { get; set; }
-        
-        public string Name { get; set; }
 
-        public double InitialDeposit { get; set; }
+        public double Quantity { get; set; }
 
-        
+        public bool FromATM { get; set; }
     }
 }
