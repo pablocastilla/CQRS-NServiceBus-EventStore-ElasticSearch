@@ -16,15 +16,17 @@ namespace UI.Controllers
         {
             var rep = new ClientInformationRepository();
 
-            return rep.GetClientsBy(null);
+            return rep.GetClientsBy(null,null);
         }
 
         // GET: api/Client/pepe
-        public IEnumerable<ClientInformation> Get(string clientName)
+        public IEnumerable<ClientInformation> Get(string clientName,string possiblyStolen=null)
         {
             var rep = new ClientInformationRepository();
 
-            return rep.GetClientsBy(clientName);
+            bool? possiblyStolenArgument = string.IsNullOrEmpty(possiblyStolen) || !bool.Parse(possiblyStolen) ? (bool?)null : true ;
+
+            return rep.GetClientsBy(clientName, possiblyStolenArgument);
         }
 
         // POST: api/Client

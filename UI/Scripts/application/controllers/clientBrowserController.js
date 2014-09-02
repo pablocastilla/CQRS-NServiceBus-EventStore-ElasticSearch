@@ -4,14 +4,15 @@
 uiAngularControllers.controller('clientBrowserController', ['$scope', '$rootScope', '$http', '$location', function ($scope, $rootScope, $http, $location) {
  
     $scope.gridOptions = { data: 'myData' };
-    $scope.name;
+    $scope.name="";
+    $scope.possiblyStolen;
     
     $scope.readFilteredClients = function () {
        
         $http.get('/api/Clients/', {
                 params: {
-                    clientName: $scope.name
-                   
+                    clientName: $scope.name,
+                    possiblyStolen: $scope.possiblyStolen
                 }
             })
             .success(function (data, status, headers, config) {

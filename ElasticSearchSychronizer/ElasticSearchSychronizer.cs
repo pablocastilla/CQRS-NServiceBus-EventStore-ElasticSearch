@@ -9,6 +9,9 @@ using CrossCutting.Repository;
 using Domain.Events;
 using ElasticSearchReadModel.Documents;
 using EventStore.ClientAPI;
+using EventStore.ClientAPI.Common.Utils;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Topshelf;
 
 namespace ElasticSearchSychronizer
@@ -45,8 +48,30 @@ namespace ElasticSearchSychronizer
         {
 
             latestPosition = Position.Start;
+           
+            var subs = connection.SubscribeToAllFrom(latestPosition,true, HandleEvent);
 
-            connection.SubscribeToAllFrom(latestPosition,true, HandleEvent);            
+           
+            //subscribe to the stream of fraud alert
+            connection.SubscribeToStreamFrom("PossiblyStolenCardClients", 0, true,
+
+               (sub, e) =>
+               {
+
+                   var jsonString = Encoding.UTF8.GetString(e.Event.Data);
+
+                   JObject o = JObject.Parse(jsonString);
+
+
+                   var clientID = (string)o["ClientID"];
+
+                   var ci = indexer.Get<ClientInformation>(clientID);
+
+                   ci.PossiblyStolen = true;
+
+                   indexer.Index(ci);
+               }
+               );
             
            
             Console.WriteLine("Indexing service started");
@@ -78,12 +103,22 @@ namespace ElasticSearchSychronizer
 
         private void Handle(ClientCreated evt)
         {
-            var clientInfo = new ClientInformation() 
+            var ci = indexer.Get<ClientInformation>(evt.ID);
+
+            ClientInformation clientInfo;
+
+            if(ci==null)
+                clientInfo = new ClientInformation() 
                             {                                
                                ID=evt.ID,
                                Name=evt.Name,
                                Balance=0
                             };
+            else
+            {
+                clientInfo = ci;
+                clientInfo.Balance = 0;                              
+            }
 
 
 

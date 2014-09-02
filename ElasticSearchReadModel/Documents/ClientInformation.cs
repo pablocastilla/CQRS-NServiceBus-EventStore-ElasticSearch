@@ -18,5 +18,7 @@ namespace ElasticSearchReadModel.Documents
 
         [ElasticProperty(Type = FieldType.Date)]
         public DateTime LastMovement { get; set; }
+
+        public bool PossiblyStolen { get; set; }
     }
 }

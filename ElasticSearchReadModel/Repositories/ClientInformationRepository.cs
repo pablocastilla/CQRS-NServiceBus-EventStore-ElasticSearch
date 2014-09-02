@@ -13,10 +13,10 @@ namespace ElasticSearchReadModel.Repositories
     {
         private const string INDEX = "metermanager";
 
-        public List<ClientInformation> GetClientsBy(string name)
+        public List<ClientInformation> GetClientsBy(string name, bool? onlyPossiblyStolen)
         {
             ElasticClient esClient;
-
+                        
             var settings = new ConnectionSettings(new Uri("http://localhost:9200"));
             settings.SetDefaultIndex(INDEX);
 
@@ -27,7 +27,10 @@ namespace ElasticSearchReadModel.Repositories
                 name = name.ToLowerInvariant();
 
             var result = esClient.Search<ClientInformation>(
-               sd => sd.Query( q=> q.Strict(false).Wildcard(t => t.Name,name))
+               sd => sd.Query(  q=> q.Strict(false).Wildcard(t => t.Name,name))
+                   .Filter(f => 
+                       f.Strict(false).Term(t => t.PossiblyStolen, onlyPossiblyStolen))                  
+                   
                    );
 
             return result.Documents.ToList();
