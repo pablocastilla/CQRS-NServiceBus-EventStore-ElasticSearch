@@ -67,6 +67,9 @@ namespace ElasticSearchSychronizer
 
                    var ci = indexer.Get<ClientInformation>(clientID);
 
+                   if (ci == null)
+                       ci = new ClientInformation() { ID = clientID };
+
                    ci.PossiblyStolen = true;
 
                    indexer.Index(ci);
@@ -117,7 +120,8 @@ namespace ElasticSearchSychronizer
             else
             {
                 clientInfo = ci;
-                clientInfo.Balance = 0;                              
+                clientInfo.Balance = 0;
+                clientInfo.Name = evt.Name;          
             }
 
 

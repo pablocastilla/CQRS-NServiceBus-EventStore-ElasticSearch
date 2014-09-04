@@ -9,7 +9,7 @@ using Nest;
 
 namespace ElasticSearchReadModel.Repositories
 {
-    public class ClientInformationRepository
+    public class ClientInformationRepository : ElasticSearchReadModel.Repositories.IClientInformationRepository
     {
         private const string INDEX = "metermanager";
 

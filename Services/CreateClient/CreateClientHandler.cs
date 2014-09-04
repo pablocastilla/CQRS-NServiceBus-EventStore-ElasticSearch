@@ -7,6 +7,7 @@ using CrossCutting.Repository;
 using Domain.Aggregates;
 using Messages.Commands;
 using NServiceBus;
+using StructureMap;
 
 namespace CreateClient
 {
@@ -14,8 +15,7 @@ namespace CreateClient
     {
         public void Handle(CreateClientCommand message)
         {
-            var connection = Configuration.CreateConnection();
-            var domainRepository = new EventStoreDomainRepository(connection);
+            var domainRepository = ObjectFactory.GetInstance<IDomainRepository>();
 
                      
             var client = Client.CreateClient(message.ClientID, message.Name);

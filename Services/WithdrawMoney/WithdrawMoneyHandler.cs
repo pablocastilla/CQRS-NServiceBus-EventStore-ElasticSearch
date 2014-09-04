@@ -7,6 +7,7 @@ using CrossCutting.Repository;
 using Domain.Aggregates;
 using Messages.Commands;
 using NServiceBus;
+using StructureMap;
 
 namespace WithdrawMoney
 {
@@ -14,8 +15,8 @@ namespace WithdrawMoney
     {
         public void Handle(WithdrawMoneyCommand message)
         {
-            var connection = Configuration.CreateConnection();
-            var domainRepository = new EventStoreDomainRepository(connection);
+
+            var domainRepository = ObjectFactory.GetInstance<IDomainRepository>();
 
             var client = domainRepository.GetById<Client>(message.ClientID);
 

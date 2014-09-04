@@ -7,6 +7,7 @@ using CrossCutting.Repository;
 using Domain.Aggregates;
 using Messages.Commands;
 using NServiceBus;
+using StructureMap;
 
 namespace DepositMoney
 {
@@ -14,8 +15,7 @@ namespace DepositMoney
     {
         public void Handle(DepositMoneyCommand message)
         {
-            var connection = Configuration.CreateConnection();
-            var domainRepository = new EventStoreDomainRepository(connection);
+            var domainRepository = ObjectFactory.GetInstance<IDomainRepository>();
 
             var client = domainRepository.GetById<Client>(message.ClientID);
 

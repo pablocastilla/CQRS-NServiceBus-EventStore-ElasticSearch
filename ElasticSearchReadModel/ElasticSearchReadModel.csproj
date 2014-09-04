@@ -55,6 +55,7 @@
     <Compile Include="Documents\ClientInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ClientInformationRepository.cs" />
+    <Compile Include="Repositories\IClientInformationRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

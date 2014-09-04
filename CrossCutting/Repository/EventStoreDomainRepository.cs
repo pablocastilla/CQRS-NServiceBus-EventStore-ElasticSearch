@@ -5,17 +5,20 @@ using System.Text;
 using CrossCutting.DomainBase;
 using EventStore.ClientAPI;
 using Newtonsoft.Json;
+using StructureMap;
 
 namespace CrossCutting.Repository
 {
     public class EventStoreDomainRepository : DomainRepositoryBase
     {
-        private IEventStoreConnection _connection;
+        private IEventStoreConnection connection;
         private const string Category = "Bank";
 
-        public EventStoreDomainRepository(IEventStoreConnection connection)
-        {
-            _connection = connection;
+        public EventStoreDomainRepository()
+        {          
+            ObjectFactory.Configure(c => c.For<IEventStoreConnection>().Use(Configuration.CreateConnection()));
+
+            this.connection = ObjectFactory.GetInstance<IEventStoreConnection>(); ;
         }
 
         private string AggregateToStreamName(Type type, string id)
@@ -37,14 +40,14 @@ namespace CrossCutting.Repository
 
             var eventData = events.Select(CreateEventData);
             var streamName = AggregateToStreamName(aggregate.GetType(), aggregate.AggregateId);
-            _connection.AppendToStream(streamName, expectedVersion, eventData);
+            connection.AppendToStream(streamName, expectedVersion, eventData);
             return events;
         }
 
         public override TResult GetById<TResult>(string id) 
         {
             var streamName = AggregateToStreamName(typeof(TResult), id);
-            var eventsSlice = _connection.ReadStreamEventsForward(streamName, 0, int.MaxValue, false);
+            var eventsSlice = connection.ReadStreamEventsForward(streamName, 0, int.MaxValue, false);
             if (eventsSlice.Status == SliceReadStatus.StreamNotFound)
             {
                 throw new AggregateNotFoundException("Could not found aggregate of type " + typeof(TResult) + " and id " + id);

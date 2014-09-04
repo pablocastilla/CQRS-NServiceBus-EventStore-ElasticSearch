@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using ElasticSearchReadModel.Documents;
 using ElasticSearchReadModel.Repositories;
+using StructureMap;
 
 namespace UI.Controllers
 {
@@ -14,7 +15,7 @@ namespace UI.Controllers
         // GET: api/Client
         public IEnumerable<ClientInformation> Get()
         {
-            var rep = new ClientInformationRepository();
+            var rep = ObjectFactory.GetInstance<IClientInformationRepository>(); 
 
             return rep.GetClientsBy(null,null);
         }

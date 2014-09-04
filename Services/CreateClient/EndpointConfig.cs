@@ -3,23 +3,27 @@ namespace CreateClient
 {
     using System;
     using System.Threading.Tasks;
+    using CrossCutting.Repository;
     using Messages.Commands;
     using NServiceBus;
+    using StructureMap;
 
 	/*
 		This class configures this endpoint as a Server. More information about how to configure the NServiceBus host
 		can be found here: http://particular.net/articles/the-nservicebus-host
 	*/
-    public class EndpointConfig : IConfigureThisEndpoint, AsA_Server, AsA_Publisher
+    public class EndpointConfig : IConfigureThisEndpoint, AsA_Server, AsA_Publisher, IWantCustomInitialization
     {
         public void Init()
         {
-
             Configure.Transactions.Advanced(settings =>
             {
                 settings.DisableDistributedTransactions();
                 settings.DefaultTimeout(TimeSpan.FromSeconds(120));
             });
+
+
+            ObjectFactory.Initialize(o => o.For<IDomainRepository>().Use<EventStoreDomainRepository>());
         }
     }
 
@@ -30,7 +34,7 @@ namespace CreateClient
         public void Start()
         {
 
-            /*Parallel.For(0, 5, i =>
+          /*  Parallel.For(10, 15, i =>
             {
                 Bus.Send("CreateClient",
                     new CreateClientCommand()
