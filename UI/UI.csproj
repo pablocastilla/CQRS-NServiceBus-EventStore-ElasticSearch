@@ -86,6 +86,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NServiceBus">
+      <HintPath>..\packages\NServiceBus.Interfaces.4.6.4\lib\net40\NServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\packages\NServiceBus.4.6.4\lib\net40\NServiceBus.Core.dll</HintPath>
+    </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.3.1.1.134\lib\net40\StructureMap.dll</HintPath>
     </Reference>
@@ -199,6 +205,8 @@
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\DashBoardController.cs" />
     <Compile Include="Controllers\DTOs\DashBoardDTO.cs" />
+    <Compile Include="Controllers\DTOs\NewClientDTO.cs" />
+    <Compile Include="Controllers\DTOs\UpdateClientDTO.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -589,6 +597,10 @@
     <ProjectReference Include="..\ElasticSearchReadModel\ElasticSearchReadModel.csproj">
       <Project>{b99647ae-7e9a-4847-a6d1-ac1a69e55e05}</Project>
       <Name>ElasticSearchReadModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Messages\Messages.csproj">
+      <Project>{33538901-4a77-46b5-8203-5aceb3e5ea31}</Project>
+      <Name>Messages</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

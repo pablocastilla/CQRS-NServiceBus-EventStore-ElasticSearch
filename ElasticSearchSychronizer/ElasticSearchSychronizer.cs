@@ -99,7 +99,8 @@ namespace ElasticSearchSychronizer
             return new Dictionary<Type, Action<object>>()
             {
                 {typeof (ClientCreated), o => Handle(o as ClientCreated)},
-                {typeof (MoneyDeposited), o => Handle(o as MoneyDeposited)}              
+                {typeof (MoneyDeposited), o => Handle(o as MoneyDeposited)},
+                {typeof (MoneyWithdrawn), o => Handle(o as MoneyWithdrawn)}              
              
             };
         }
@@ -144,6 +145,20 @@ namespace ElasticSearchSychronizer
                 indexer.Index(new AmountDepositedInTheBank { Quantity = evt.Quantity, TimeStamp = evt.TimeStamp, ID=evt.ClientID,TransactionId=evt.TransactionId });
         }
 
+        private void Handle(MoneyWithdrawn evt)
+        {
+            var ci = indexer.Get<ClientInformation>(evt.ClientID);
+
+            ci.Balance -= evt.Quantity;
+            ci.LastMovement = evt.TimeStamp;
+
+            indexer.Index(ci);
+
+            var ad = indexer.Get<AmountDepositedInTheBank>(evt.TransactionId.ToString());
+
+            if(ad==null)
+                indexer.Index(new AmountDepositedInTheBank { Quantity = evt.Quantity, TimeStamp = evt.TimeStamp, ID=evt.ClientID,TransactionId=evt.TransactionId });
+        }
       
     }
 

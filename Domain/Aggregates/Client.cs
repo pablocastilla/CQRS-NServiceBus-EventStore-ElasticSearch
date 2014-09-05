@@ -67,6 +67,8 @@ namespace Domain.Aggregates
 
         public void Withdraw(double quantity, DateTime timeStamp, Guid transactionId, bool fromATM = false)
         {
+            quantity = Math.Abs(quantity);
+
             RaiseEvent(new MoneyWithdrawn(quantity, timeStamp, ID, transactionId, fromATM));
         }
     }

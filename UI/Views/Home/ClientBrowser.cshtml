@@ -16,7 +16,37 @@
     </div>
     <div class="gridStyle" ng-grid="gridOptions">
     </div>
+
+    <div>
+        Insert Client
+        <div>
+            ID:                 <input type="text" name="ID" ng-model="newClient.id" required>
+            User name:          <input type="text" name="Name" ng-model="newClient.name" required>
+            Initial deposit:    <input type="text" name="Initial deposit" ng-model="newClient.initialDeposit" required>
+        </div>
+        <div>
+            <button ng-click="submitNewClient()">
+                Submit New Client
+            </button>
+        </div>
+    </div>
+
+
+    <div>
+        Update client
+        <div>
+            ClientID:   <input type="text" name="ID" ng-model="updateClient.id" required>            
+            Quantity:   <input type="text" name="Initial deposit" ng-model="updateClient.quantity" required>
+            InATM:      <input type="checkbox" ng-model="updateClient.inATM">
+        </div>
+        <div>
+            <button ng-click="submitUpdateClient()">
+                Update Client
+            </button>
+        </div>
+    </div>
 </div>
+
 
 
 
