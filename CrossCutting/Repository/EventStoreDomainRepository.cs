@@ -40,19 +40,19 @@ namespace CrossCutting.Repository
 
             var eventData = events.Select(CreateEventData);
             var streamName = AggregateToStreamName(aggregate.GetType(), aggregate.AggregateId);
-            connection.AppendToStream(streamName, expectedVersion, eventData);
+            connection.AppendToStreamAsync(streamName, expectedVersion, eventData);
             return events;
         }
 
         public override TResult GetById<TResult>(string id) 
         {
             var streamName = AggregateToStreamName(typeof(TResult), id);
-            var eventsSlice = connection.ReadStreamEventsForward(streamName, 0, int.MaxValue, false);
-            if (eventsSlice.Status == SliceReadStatus.StreamNotFound)
+            var eventsSlice = connection.ReadStreamEventsForwardAsync(streamName, 0, int.MaxValue, false);
+            if (eventsSlice.Result.Status == SliceReadStatus.StreamNotFound)
             {
                 throw new AggregateNotFoundException("Could not found aggregate of type " + typeof(TResult) + " and id " + id);
             }
-            var deserializedEvents = eventsSlice.Events.Select(e =>
+            var deserializedEvents = eventsSlice.Result.Events.Select(e =>
             {
                 var metadata = SerializationUtils.DeserializeObject<Dictionary<string, string>>(e.OriginalEvent.Metadata);
                 var eventData = SerializationUtils.DeserializeObject(e.OriginalEvent.Data, metadata[EventClrTypeHeader]);

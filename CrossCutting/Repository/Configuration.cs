@@ -21,7 +21,7 @@ namespace CrossCutting.Repository
                     .SetDefaultUserCredentials(new UserCredentials("admin", "changeit"));
             var endPoint = new IPEndPoint(EventStoreIP, EventStorePort);
             var connection = EventStoreConnection.Create(settings, endPoint, null);
-            connection.Connect();
+            connection.ConnectAsync();
             return connection;
         }
 

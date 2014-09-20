@@ -34,7 +34,7 @@ namespace CreateClient
         public void Start()
         {
 
-          /*  Parallel.For(10, 15, i =>
+            Parallel.For(30000, 45000, i =>
             {
                 Bus.Send("CreateClient",
                     new CreateClientCommand()
@@ -47,7 +47,7 @@ namespace CreateClient
                     }
                 );
 
-                Bus.Send("DepositMoney",
+               /* Bus.Send("DepositMoney",
                     new DepositMoneyCommand()
                     {
                         MessageId = System.Guid.NewGuid(),
@@ -86,9 +86,9 @@ namespace CreateClient
                        ClientID = i.ToString(),
                        Quantity = 10
                    }
-               );
+               );*/
             }
-            );*/
+            );
 
         }
 
