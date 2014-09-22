@@ -1,18 +1,18 @@
 //ProjectionName: PossiblyStolenCards
 ///projection/PossiblyStolenCards/state
 
-fromCategory('Bank-Client')
+fromCategory('Bank')
   .foreachStream()
   .when({
       $init: function (state, ev) {
-          return {}
+          return {};
       },
 
       MoneyWithdrawn: function (state, ev) {
           if (state.lastWithdraw) {
               var newDate = new Date(ev.body.TimeStamp)
                 , lastDate = new Date(state.lastWithdraw.body.TimeStamp)
-                , difference = (newDate.getTime() - lastDate.getTime()) / 1000
+                , difference = (newDate.getTime() - lastDate.getTime()) / 1000;
 
               if (difference < 120) {
                   emit('PossiblyStolenCardClients', "PossiblyStolenCardClient", {
@@ -21,8 +21,8 @@ fromCategory('Bank-Client')
               }
           }
 
-          state.lastWithdraw = ev
-          return state
+          state.lastWithdraw = ev;
+          return state;
 
       },
-  })
+  });
