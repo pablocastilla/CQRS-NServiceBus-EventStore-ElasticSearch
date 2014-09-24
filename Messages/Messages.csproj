@@ -49,11 +49,10 @@
     <Compile Include="Commands\CreateClientCommand.cs" />
     <Compile Include="Commands\DepositMoneyCommand.cs" />
     <Compile Include="Commands\WithdrawMoneyCommand.cs" />
+    <Compile Include="Events\ClientPossiblyStolen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Events\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

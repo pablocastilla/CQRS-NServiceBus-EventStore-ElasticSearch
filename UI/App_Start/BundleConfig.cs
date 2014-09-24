@@ -17,10 +17,11 @@ namespace UI
                 "~/Scripts/angular.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angularModules").Include(
-             "~/Scripts/angular-*").Include("~/Scripts/ng-grid.js"));
+             "~/Scripts/angular-*").Include("~/Scripts/ng-grid.js").Include("~/Scripts/ngDialog.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js").Include(
+                        "~/Scripts/jquery.signalR-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -36,7 +37,7 @@ namespace UI
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css").Include("~/Content/ng-grid.css"));
+                      "~/Content/site.css", "~/Content/ngDialog/ngDialog*").Include("~/Content/ng-grid.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

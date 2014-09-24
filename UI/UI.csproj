@@ -46,6 +46,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.1.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.1.2\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -216,6 +222,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\ClientPossiblyStolenHandler.cs" />
+    <Compile Include="Hub\NonPersistentHub.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -229,6 +237,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\ng-grid.css" />
     <Content Include="Content\ng-grid.min.css" />
+    <Content Include="Content\ngDialog\ngDialog-theme-default.css" />
+    <Content Include="Content\ngDialog\ngDialog-theme-default.min.css" />
+    <Content Include="Content\ngDialog\ngDialog-theme-plain.css" />
+    <Content Include="Content\ngDialog\ngDialog-theme-plain.min.css" />
+    <Content Include="Content\ngDialog\ngDialog.css" />
+    <Content Include="Content\ngDialog\ngDialog.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -260,6 +274,7 @@
     <Content Include="Scripts\application\controllers\clientBrowserController.js" />
     <Content Include="Scripts\application\controllers\dashBoardController.js" />
     <Content Include="Scripts\application\controllers\mainViewController.js" />
+    <Content Include="Scripts\application\services\SignalRHubService.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1009,6 +1024,8 @@
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.signalR-2.1.2.js" />
+    <Content Include="Scripts\jquery.signalR-2.1.2.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -1016,6 +1033,8 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\ng-grid.js" />
     <Content Include="Scripts\ng-grid.min.js" />
+    <Content Include="Scripts\ngDialog.js" />
+    <Content Include="Scripts\ngDialog.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -1041,7 +1060,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\application\services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

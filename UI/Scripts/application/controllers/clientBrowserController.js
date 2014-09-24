@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 //controller for the main view
-uiAngularControllers.controller('clientBrowserController', ['$scope', '$rootScope', '$http', '$location', function ($scope, $rootScope, $http, $location) {
+uiAngularControllers.controller('clientBrowserController', ['$scope', '$rootScope', '$http', '$location', 'ngDialog', function ($scope, $rootScope, $http, $location, ngDialog) {
  
     $scope.gridOptions = { data: 'myData' };
     $scope.name="";
@@ -55,5 +55,19 @@ uiAngularControllers.controller('clientBrowserController', ['$scope', '$rootScop
 
     };
 
+
+    var unbind = $rootScope.$on('clientPossiblyStolen', function (event, args) {
+        console.log('evento en controlador' + args.message.ClientID);
+
+        ngDialog.open({
+            template: '<p>Client '+args.message.ClientID+' card has been used in ATM several time in less than 2 minutes</p>',
+            plain: true
+        });
+    });
+
+    $scope.$on('$destroy', unbind);
+
     $scope.readFilteredClients();
+
+  
 }]);

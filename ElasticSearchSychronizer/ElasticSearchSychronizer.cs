@@ -10,14 +10,24 @@ using Domain.Events;
 using ElasticSearchReadModel.Documents;
 using EventStore.ClientAPI;
 using EventStore.ClientAPI.Common.Utils;
+using Messages.Events;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using NServiceBus;
+using NServiceBus.Features;
 using Topshelf;
 
 namespace ElasticSearchSychronizer
 {
     public class ElasticSearchSychronizer
     {
+        private static IBus bus;
+
+        public static IBus Bus
+        {
+            get { return bus; }
+        }
+
         private Indexer indexer;
         private Dictionary<Type, Action<object>> eventHandlerMapping;
         private Position? latestPosition;
@@ -30,6 +40,25 @@ namespace ElasticSearchSychronizer
         }
         public void Start() 
         {
+            //NServiceBus
+            Configure.Serialization.Xml();
+            Configure.Transactions.Enable();
+
+            NServiceBus.Configure.Features.Enable<StorageDrivenPublisher>();
+
+            bus=Configure.With()               
+                .DefaultBuilder()
+                .UseTransport<Msmq>()
+                .PurgeOnStartup(false)
+                .UnicastBus()
+                .CreateBus()                
+                .Start(() => {
+                   
+                    Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install();                   
+                    
+                });
+
+
             indexer = new Indexer();
             indexer.Init();
             connection = Configuration.CreateConnection();
@@ -56,14 +85,14 @@ namespace ElasticSearchSychronizer
             connection.SubscribeToStreamFrom("PossiblyStolenCardClients", 0, true,
 
                (sub, e) =>
-               {
-
+               {                                     
                    var jsonString = Encoding.UTF8.GetString(e.Event.Data);
 
                    JObject o = JObject.Parse(jsonString);
-
-
+                   
                    var clientID = (string)o["ClientID"];
+
+                   Bus.Publish(new ClientPossiblyStolen() { ClientID = clientID});
 
                    var ci = indexer.Get<ClientInformation>(clientID);
 

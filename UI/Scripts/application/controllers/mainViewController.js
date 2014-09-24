@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 //controller for the main view
-uiAngularControllers.controller('mainViewController', ['$scope', '$rootScope', '$http', '$location', function ($scope, $rootScope, $http,  $location) {
+uiAngularControllers.controller('mainViewController', ['$scope', '$rootScope', '$http', '$location', 'ngDialog', function ($scope, $rootScope, $http, $location, ngDialog) {
 
     //what has to be loaded when the tab changes
     $scope.tabSelected = function (tabId) {
@@ -13,6 +13,9 @@ uiAngularControllers.controller('mainViewController', ['$scope', '$rootScope', '
     };
 
 
+
+
+
     $scope.isViewLoading = false;
     $scope.$on('$routeChangeStart', function () {
         $scope.isViewLoading = true;
@@ -20,4 +23,6 @@ uiAngularControllers.controller('mainViewController', ['$scope', '$rootScope', '
     $scope.$on('$routeChangeSuccess', function () {
         $scope.isViewLoading = false;
     });
+
+  
 }]);
