@@ -18,13 +18,11 @@ uiAngularServices.service('SignalRHubService', function ($rootScope) {
         connection.start();
 
        
-
-        //Publishing an event when server pushes a readInsertionFinished message
         this.proxy.on('clientPossiblyStolen', function (msg) {
            
-            console.log("Evento Recibido del signalR" + msg);
+           
             $rootScope.$emit('clientPossiblyStolen', { message: msg });
-            console.log("Evento propagado");
+            
            
         });
     };
