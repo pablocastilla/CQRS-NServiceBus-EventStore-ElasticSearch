@@ -20,7 +20,7 @@ namespace UI.Controllers
 
             var responseBody = responseMessage.Result.Content.ReadAsStringAsync();
 
-            if (responseBody.Result != "Not Found")
+            if (responseBody.Result != "Not Found" && responseBody.Result!="")
             {
 
                 JObject o = JObject.Parse(responseBody.Result);
@@ -29,7 +29,7 @@ namespace UI.Controllers
             }
             else
             { 
-            return new DashBoardDTO { TotalMoneyInBank = 0 };
+                return new DashBoardDTO { TotalMoneyInBank = 0 };
             
             }
 
