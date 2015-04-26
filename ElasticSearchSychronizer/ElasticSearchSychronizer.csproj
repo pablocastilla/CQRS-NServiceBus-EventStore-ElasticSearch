@@ -37,26 +37,23 @@
   <ItemGroup>
     <Reference Include="Elasticsearch.Net, Version=1.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Elasticsearch.Net.1.1.1\lib\Elasticsearch.Net.dll</HintPath>
+      <HintPath>..\packages\Elasticsearch.Net.1.4.3\lib\net45\Elasticsearch.Net.dll</HintPath>
     </Reference>
-    <Reference Include="EventStore.ClientAPI, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="EventStore.ClientAPI, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EventStore.Client.3.0.0\lib\net40\EventStore.ClientAPI.dll</HintPath>
+      <HintPath>..\packages\EventStore.Client.3.0.2\lib\net40\EventStore.ClientAPI.dll</HintPath>
     </Reference>
     <Reference Include="Nest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NEST.1.1.1\lib\Nest.dll</HintPath>
+      <HintPath>..\packages\NEST.1.4.3\lib\net45\Nest.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus, Version=4.6.5.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+    <Reference Include="NServiceBus.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.Interfaces.4.6.5\lib\net40\NServiceBus.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus.Core">
-      <HintPath>..\packages\NServiceBus.4.6.5\lib\net40\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.5.2.0\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

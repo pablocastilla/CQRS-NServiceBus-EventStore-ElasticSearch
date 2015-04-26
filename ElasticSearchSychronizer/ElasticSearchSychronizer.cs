@@ -41,22 +41,14 @@ namespace ElasticSearchSychronizer
         public void Start() 
         {
             //NServiceBus
-            Configure.Serialization.Xml();
-            Configure.Transactions.Enable();
+            BusConfiguration busConfiguration = new BusConfiguration();
+                        
+            
+            busConfiguration.UsePersistence<InMemoryPersistence>();
+            busConfiguration.EnableInstallers();
 
-            NServiceBus.Configure.Features.Enable<StorageDrivenPublisher>();
-
-            bus=Configure.With()               
-                .DefaultBuilder()
-                .UseTransport<Msmq>()
-                .PurgeOnStartup(false)
-                .UnicastBus()
-                .CreateBus()                
-                .Start(() => {
-                   
-                    Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install();                   
-                    
-                });
+            var startableBus = NServiceBus.Bus.Create(busConfiguration);
+            bus = startableBus.Start();
 
 
             indexer = new Indexer();

@@ -20,9 +20,18 @@ namespace UI.Controllers
 
             var responseBody = responseMessage.Result.Content.ReadAsStringAsync();
 
-            JObject o = JObject.Parse(responseBody.Result);
+            if (responseBody.Result != "Not Found")
+            {
 
-            return new DashBoardDTO { TotalMoneyInBank = (double)o["TotalMoney"] };
+                JObject o = JObject.Parse(responseBody.Result);
+
+                return new DashBoardDTO { TotalMoneyInBank = (double)o["TotalMoney"] };
+            }
+            else
+            { 
+            return new DashBoardDTO { TotalMoneyInBank = 0 };
+            
+            }
 
         }
 

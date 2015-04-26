@@ -12,15 +12,11 @@ namespace CreateClient
 		This class configures this endpoint as a Server. More information about how to configure the NServiceBus host
 		can be found here: http://particular.net/articles/the-nservicebus-host
 	*/
-    public class EndpointConfig : IConfigureThisEndpoint, AsA_Server, AsA_Publisher, IWantCustomInitialization
+    public class EndpointConfig : IConfigureThisEndpoint
     {
-        public void Init()
+        public void Customize(BusConfiguration configuration)
         {
-            Configure.Transactions.Advanced(settings =>
-            {
-                settings.DisableDistributedTransactions();
-                settings.DefaultTimeout(TimeSpan.FromSeconds(120));
-            });
+            configuration.UsePersistence<InMemoryPersistence>();
 
 
             ObjectFactory.Initialize(o => o.For<IDomainRepository>().Use<EventStoreDomainRepository>());

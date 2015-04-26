@@ -26,20 +26,16 @@ namespace UI
         protected void Application_Start()
         {
 
-            Configure.ScaleOut(s => s.UseSingleBrokerQueue());
-
-            startableBus = Configure.With()
-                .DefaultBuilder()
-                .UseTransport<Msmq>()
-                .PurgeOnStartup(false)
-                .UnicastBus()
-                .RunHandlersUnderIncomingPrincipal(false)
-                .CreateBus();
+            BusConfiguration busConfiguration = new BusConfiguration();
 
 
-            Configure.Instance.ForInstallationOn<Windows>().Install();
+            busConfiguration.UsePersistence<InMemoryPersistence>();
+            busConfiguration.EnableInstallers();
 
+            var startableBus = NServiceBus.Bus.Create(busConfiguration);
             bus = startableBus.Start();
+
+            
 
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);

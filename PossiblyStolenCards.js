@@ -9,7 +9,7 @@ fromCategory('Bank')
       },
 
       MoneyWithdrawn: function (state, ev) {
-          if (state.lastWithdraw) {
+          if (state.lastWithdraw && ev.body.FromATM === true) {
               var newDate = new Date(ev.body.TimeStamp)
                 , lastDate = new Date(state.lastWithdraw.body.TimeStamp)
                 , difference = (newDate.getTime() - lastDate.getTime()) / 1000;
@@ -19,9 +19,14 @@ fromCategory('Bank')
                       ClientID: ev.body.ClientID
                   });
               }
+
+              
           }
 
-          state.lastWithdraw = ev;
+          if (ev.body.FromATM === true) {
+              state.lastWithdraw = ev;
+          }
+         
           return state;
 
       },
