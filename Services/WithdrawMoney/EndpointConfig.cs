@@ -14,10 +14,20 @@ namespace WithdrawMoney
     {
         public void Customize(BusConfiguration configuration)
         {
+            var container = new Container();
+
+            container.Configure(
+               cfg =>
+               {
+                   cfg.Policies.FillAllPropertiesOfType<IContainer>();
+                   cfg.For<IDomainRepository>().Use<EventStoreDomainRepository>();
+
+               }
+               );
+
             configuration.UsePersistence<InMemoryPersistence>();
-
-
-            ObjectFactory.Initialize(o => o.For<IDomainRepository>().Use<EventStoreDomainRepository>());
+            configuration.Transactions().DisableDistributedTransactions();
+            configuration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(container));
         }
     }
 }

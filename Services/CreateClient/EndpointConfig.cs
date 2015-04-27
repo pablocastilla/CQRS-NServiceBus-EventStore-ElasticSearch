@@ -16,10 +16,22 @@ namespace CreateClient
     {
         public void Customize(BusConfiguration configuration)
         {
+            var container = new Container();
+
+            container.Configure(
+               cfg =>
+               {
+                   cfg.Policies.FillAllPropertiesOfType<IContainer>();
+                   cfg.For<IDomainRepository>().Use<EventStoreDomainRepository>();
+                  
+               }
+               );
+
             configuration.UsePersistence<InMemoryPersistence>();
+            configuration.Transactions().DisableDistributedTransactions();
+            configuration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(container));
 
-
-            ObjectFactory.Initialize(o => o.For<IDomainRepository>().Use<EventStoreDomainRepository>());
+            
         }
     }
 

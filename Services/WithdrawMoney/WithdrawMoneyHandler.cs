@@ -13,10 +13,16 @@ namespace WithdrawMoney
 {
     public class WithdrawMoneyHandler : IHandleMessages<WithdrawMoneyCommand>
     {
-        public void Handle(WithdrawMoneyCommand message)
-        {
+        IDomainRepository domainRepository;
 
-            var domainRepository = ObjectFactory.GetInstance<IDomainRepository>();
+        public WithdrawMoneyHandler( IDomainRepository domainRepository)
+        {
+            this.domainRepository = domainRepository;
+        }
+
+
+        public void Handle(WithdrawMoneyCommand message)
+        {                       
 
             var client = domainRepository.GetById<Client>(message.ClientID);
 

@@ -13,9 +13,15 @@ namespace DepositMoney
 {
     public class DepositMoneyHandler : IHandleMessages<DepositMoneyCommand>
     {
-        public void Handle(DepositMoneyCommand message)
+        IDomainRepository domainRepository;
+
+        public DepositMoneyHandler( IDomainRepository domainRepository)
         {
-            var domainRepository = ObjectFactory.GetInstance<IDomainRepository>();
+            this.domainRepository = domainRepository;
+        }
+
+        public void Handle(DepositMoneyCommand message)
+        {          
 
             var client = domainRepository.GetById<Client>(message.ClientID);
 
